@@ -1,0 +1,26 @@
+HKCR
+{
+	MidiCtl.midiOutInfo.1 = s 'midiOutInfo Class'
+	{
+		CLSID = s '{4BEBEFDB-45CC-47C2-B658-915E7D002564}'
+	}
+	MidiCtl.midiOutInfo = s 'midiOutInfo Class'
+	{
+		CLSID = s '{4BEBEFDB-45CC-47C2-B658-915E7D002564}'
+		CurVer = s 'MidiCtl.midiOutInfo.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {4BEBEFDB-45CC-47C2-B658-915E7D002564} = s 'midiOutInfo Class'
+		{
+			ProgID = s 'MidiCtl.midiOutInfo.1'
+			VersionIndependentProgID = s 'MidiCtl.midiOutInfo'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{2161E819-CC11-4FDD-8A2D-7599D791465A}'
+		}
+	}
+}

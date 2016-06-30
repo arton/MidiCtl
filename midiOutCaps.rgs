@@ -1,0 +1,26 @@
+HKCR
+{
+	MidiCtl.midiOutCaps.1 = s 'midiOutCaps Class'
+	{
+		CLSID = s '{D103AB12-EFA3-4942-AA6D-70C3490D0F44}'
+	}
+	MidiCtl.midiOutCaps = s 'midiOutCaps Class'
+	{
+		CLSID = s '{D103AB12-EFA3-4942-AA6D-70C3490D0F44}'
+		CurVer = s 'MidiCtl.midiOutCaps.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D103AB12-EFA3-4942-AA6D-70C3490D0F44} = s 'midiOutCaps Class'
+		{
+			ProgID = s 'MidiCtl.midiOutCaps.1'
+			VersionIndependentProgID = s 'MidiCtl.midiOutCaps'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{2161E819-CC11-4FDD-8A2D-7599D791465A}'
+		}
+	}
+}

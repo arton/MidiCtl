@@ -1,0 +1,9 @@
+; midiCtl.def : モジュール パラメータを宣言します。
+
+LIBRARY      "midiCtl.DLL"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer	PRIVATE

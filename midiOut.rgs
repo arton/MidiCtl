@@ -1,0 +1,26 @@
+HKCR
+{
+	MidiCtl.midiOut.1 = s 'midiOut Class'
+	{
+		CLSID = s '{6ABCDF21-91CE-4D73-820D-C3CB6D27C236}'
+	}
+	MidiCtl.midiOut = s 'midiOut Class'
+	{
+		CLSID = s '{6ABCDF21-91CE-4D73-820D-C3CB6D27C236}'
+		CurVer = s 'MidiCtl.midiOut.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {6ABCDF21-91CE-4D73-820D-C3CB6D27C236} = s 'midiOut Class'
+		{
+			ProgID = s 'MidiCtl.midiOut.1'
+			VersionIndependentProgID = s 'MidiCtl.midiOut'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{2161E819-CC11-4FDD-8A2D-7599D791465A}'
+		}
+	}
+}

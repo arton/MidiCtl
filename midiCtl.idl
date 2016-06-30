@@ -1,0 +1,113 @@
+// Copyright(c) 2001 arton
+//
+// midiCtl.idl : midiCtl.dll 用の IDL ソース ファイル
+//
+
+// このファイルはタイプ ライブラリ (midiCtl.tlb) を作成するために
+// タイプ ライブラリ作成ツール MIDL によって処理されます。
+
+import "oaidl.idl";
+import "ocidl.idl";
+[
+	uuid(2161E819-CC11-4FDD-8A2D-7599D791465A),
+	version(1.0),
+	helpstring("midiCtl 1.0")
+]
+library MIDICTLLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		object,
+		uuid(2B1D37CF-9051-4811-8588-FF6AF7EF81AE),
+		dual,
+		helpstring("ImidiOut Interface"),
+		pointer_default(unique)
+	]
+	interface ImidiOut : IDispatch
+	{
+	[id(2)] HRESULT Close();
+	[id(3)] HRESULT Send([in]long Msg);
+	[id(4), propget] HRESULT Volume([out, retval]long* pResult);
+	[id(4), propput] HRESULT Volume([in]long NewVal);
+	[id(5)] HRESULT Reset();
+	};
+
+	[
+		uuid(9E6212AE-7995-4342-B47E-D519FB48C3CF),
+		helpstring("_ImidiOutEvents Interface")
+	]
+	dispinterface _ImidiOutEvents
+	{
+		properties:
+		methods:
+	};
+
+	[
+		object,
+		uuid(9503B5DD-503A-48FE-BC80-CE1C195E0951),
+		dual,
+		helpstring("ImidiOutCaps Interface"),
+		pointer_default(unique)
+	]
+	interface ImidiOutCaps : IDispatch
+	{
+		[id(1), propget] HRESULT ManufacturerID([out, retval]long* pResult);
+		[id(2), propget] HRESULT ProductID([out, retval]long* pResult);
+		[id(3), propget] HRESULT DriverMajorVersion([out, retval]long* pResult);
+		[id(4), propget] HRESULT DriverMinorVersion([out, retval]long* pResult);
+		[id(5), propget] HRESULT ProductName([out, retval]BSTR* pResult);
+		[id(6), propget] HRESULT Technology([out, retval]BSTR* pResult);
+		[id(7), propget] HRESULT Voices([out, retval]short* pResult);
+		[id(8), propget] HRESULT Notes([out, retval]short* pResult);
+		[id(9), propget] HRESULT ChannelMask([out, retval]short* pResult);
+		[id(10), propget] HRESULT Support([out, retval]long* pResult);
+		[id(11), propget] HRESULT Device([out, retval]ImidiOut** ppResult);
+	};
+
+	[
+		object,
+		uuid(0C251B6D-5B53-4E51-9384-0463A450AC01),
+		dual,
+		helpstring("ImidiOutInfo Interface"),
+		pointer_default(unique)
+	]
+	interface ImidiOutInfo : IDispatch
+	{
+		[id(1), propget] HRESULT Length([out, retval]long* pResult);
+		[id(DISPID_NEWENUM), propget] HRESULT _NewEnum([out, retval]IUnknown** ppUnk);
+		[id(DISPID_VALUE), propget] HRESULT Item([in]long Index, [out, retval]ImidiOutCaps** ppCaps);
+		[id(2), propget] HRESULT Mapper([out, retval]ImidiOut** ppResult);
+		[id(3), propget] HRESULT TimerResolution([out, retval]long* pResult);
+		[id(4)] HRESULT Wait([in]long WaitVal, [in]long Resolution);
+	};
+
+	[
+		uuid(6ABCDF21-91CE-4D73-820D-C3CB6D27C236),
+		helpstring("midiOut Class"),
+		noncreatable
+	]
+	coclass midiOut
+	{
+		[default] interface ImidiOut;
+		[default, source] dispinterface _ImidiOutEvents;
+	};
+	[
+		uuid(4BEBEFDB-45CC-47C2-B658-915E7D002564),
+		helpstring("midiOutInfo Class")
+	]
+	coclass midiOutInfo
+	{
+		[default] interface ImidiOutInfo;
+	};
+	[
+		uuid(D103AB12-EFA3-4942-AA6D-70C3490D0F44),
+		helpstring("midiOutCaps Class"),
+		noncreatable
+	]
+	coclass midiOutCaps
+	{
+		[default] interface ImidiOutCaps;
+	};
+};
